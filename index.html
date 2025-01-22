@@ -13,86 +13,88 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f4f4f4;
             color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             padding: 20px;
         }
         .container {
-            background-color: #ffffff;
+            background-color: #000;
+            color: #fff;
             border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 30px;
         }
         .profile {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         .profile img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border: 3px solid #555;
         }
         .profile h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
+            font-weight: bold;
             margin-bottom: 10px;
-            color: #333;
         }
         .profile p {
             font-size: 1rem;
-            color: #777;
-            margin-bottom: 20px;
+            color: #bbb;
+            margin-bottom: 25px;
         }
         .call-button {
-            display: block;
+            display: inline-block;
             text-decoration: none;
-            background-color: #4CAF50;
+            background-color: #222;
             color: #fff;
             font-size: 1.2rem;
             padding: 15px 25px;
             border-radius: 50px;
-            margin: 10px auto;
-            width: 90%;
+            margin: 15px 0;
+            width: 80%;
             max-width: 300px;
             font-weight: bold;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
         .call-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            background-color: #45a049;
+            background-color: #333;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
         .call-button span {
             margin-right: 10px;
         }
         .disclaimer {
             font-size: 0.9rem;
-            color: #777;
+            color: #bbb;
             margin-top: 20px;
             text-align: left;
+            line-height: 1.5;
         }
         .footer {
             margin-top: 30px;
-            font-size: 0.8rem;
-            color: #aaa;
+            font-size: 0.85rem;
+            color: #555;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="profile">
-            <img src="https://github.com/thefronky/CallFronkRedirect/raw/883f20ba8f43ca56246a56cefc72827e27841c0d/ECCD2C77-2329-4A03-81BC-B86FE9D44450_1_102_o.jpeg" alt="Profile Picture">
-" alt="The Fronk">
+            <img src="https://github.com/thefronky/CallFronkRedirect/raw/883f20ba8f43ca56246a56cefc72827e27841c0d/ECCD2C77-2329-4A03-81BC-B86FE9D44450_1_102_o.jpeg" alt="The Fronk">
             <h1>Call Fronk Live</h1>
-            <p>Connect with Fronk and be part of the show!</p>
+            <p>Be part of the show! Talk to Fronk now.</p>
         </div>
         <a href="tel:+16194831992" class="call-button">
             <span>📞</span> Call Now
@@ -106,7 +108,7 @@
             </ul>
         </div>
         <div class="footer">
-            <p> 2025 Fronk Show Productions.</p>
+            <p>Fronk Show Productions</p>
         </div>
     </div>
 </body>
