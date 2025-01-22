@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Call Disclaimer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Call Disclaimer</h1>
+  <p><strong>Phone Number:</strong> <a href="tel:YOUR_NUMBER">YOUR_NUMBER</a></p>
+  <p>By calling this number, you agree to the following terms:</p>
+  <ul>
+    <li>All calls may be recorded for live streaming, content creation, and distribution.</li>
+    <li>By participating, you grant irrevocable, perpetual, worldwide rights to use, reproduce, distribute, modify, and display the recorded content.</li>
+    <li>You will not receive any compensation or royalties for your participation or the use of the content.</li>
+    <li>If you do not agree to these terms, do not call this number.</li>
+  </ul>
+</body>
+</html>
