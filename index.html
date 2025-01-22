@@ -12,9 +12,9 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #2b5876, #4e4376);
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,112 +22,91 @@
             padding: 20px;
         }
         .container {
-            background: #fff;
-            color: #333;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
         }
-        .header {
-            background: linear-gradient(135deg, #007BFF, #0056b3);
-            color: #fff;
-            padding: 20px;
-            border-bottom: 4px solid #004494;
+        .profile {
+            margin-bottom: 20px;
         }
-        .header h1 {
-            font-size: 2rem;
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .profile h1 {
+            font-size: 1.8rem;
             margin-bottom: 10px;
+            color: #333;
         }
-        .header p {
+        .profile p {
             font-size: 1rem;
-            font-weight: 300;
-        }
-        .call-to-action {
-            margin: 20px 0;
+            color: #777;
+            margin-bottom: 20px;
         }
         .call-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #28a745, #218838);
+            display: block;
+            text-decoration: none;
+            background-color: #4CAF50;
             color: #fff;
             font-size: 1.2rem;
-            padding: 15px 30px;
+            padding: 15px 25px;
             border-radius: 50px;
-            text-decoration: none;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 300px;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s, background 0.3s;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .call-button:hover {
-            background: linear-gradient(135deg, #218838, #19692c);
             transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            background-color: #45a049;
         }
         .call-button span {
             margin-right: 10px;
         }
-        .manual-call {
-            margin: 10px 0;
-            font-size: 1.1rem;
-        }
         .disclaimer {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #777;
             margin-top: 20px;
-            color: #333;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .disclaimer h2 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-        .disclaimer ul {
             text-align: left;
-            padding-left: 20px;
-        }
-        .disclaimer li {
-            margin-bottom: 10px;
-            font-size: 1rem;
         }
         .footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #666;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>📞 Call Fronk Live!</h1>
-            <p>Be part of the action and talk to Fronk live on the air.</p>
+        <div class="profile">
+            <img src="https://drive.google.com/drive/u/0/folders/1O2W5jSMYk6wj8fY-5i1u9MPFV6nSlBoC" alt="The Fronk">
+            <h1>Call Fronk Live</h1>
+            <p>Connect with Fronk and be part of the show!</p>
         </div>
-
-        <div class="call-to-action">
-            <a href="tel:+16194831992" class="call-button">
-                <span>📞</span> Call Now
-            </a>
-            <p class="manual-call">Or dial directly: <strong>(619) 483-1992</strong></p>
-        </div>
-
+        <a href="tel:+16194831992" class="call-button">
+            <span>📞</span> Call Now
+        </a>
         <div class="disclaimer">
-            <h2>Call Disclaimer</h2>
-            <p>By calling this number, you agree to the following terms:</p>
+            <p><strong>Disclaimer:</strong> By calling this number, you agree to the following:</p>
             <ul>
-                <li>All calls may be recorded for live streaming, content creation, and distribution.</li>
-                <li>By participating, you grant irrevocable, perpetual, worldwide rights to use, reproduce, distribute, modify, and display the recorded content.</li>
-                <li>You will not receive any compensation or royalties for your participation or the use of the content.</li>
-                <li>If you do not agree to these terms, do not call this number.</li>
+                <li>Your call may be recorded for live streaming and content creation.</li>
+                <li>You grant us the rights to use the recorded content worldwide, without compensation.</li>
+                <li>If you do not agree, please do not call this number.</li>
             </ul>
         </div>
-
         <div class="footer">
             <p> 2025 Fronk Show Productions.</p>
         </div>
     </div>
 </body>
 </html>
-
