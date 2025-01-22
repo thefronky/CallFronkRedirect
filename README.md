@@ -3,8 +3,6 @@
 ## Legal Disclaimer
 By calling the provided phone number, you expressly agree to the following terms:
 
-By calling the provided phone number, you expressly agree to the following terms:
-
 Recording Consent:
 All calls to this number may be recorded for the purposes of live streaming, content creation, and distribution across various platforms.
 
