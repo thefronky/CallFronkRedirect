@@ -40,11 +40,11 @@
             border-radius: 50%;
             opacity: 0.8;
             animation: float infinite linear;
-            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
         }
 
         .cloud.purple {
-            filter: hue-rotate(240deg); /* Make the cloud purple */
+            filter: hue-rotate(240deg); /* Turn the cloud purple */
         }
 
         /* Cloud Movement with Wavering */
@@ -72,7 +72,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.5); /* Light translucent background */
+            background: rgba(255, 255, 255, 0.6); /* Light translucent background */
             border-radius: 20px;
             width: 90%;
             max-width: 480px;
@@ -146,10 +146,6 @@
             padding-left: 20px;
         }
 
-        .disclaimer strong {
-            color: #ffd700;
-        }
-
         /* Footer */
         .footer {
             margin-top: 20px;
@@ -197,9 +193,9 @@
                 const observer = new IntersectionObserver(entries => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add('purple');
+                            entry.target.classList.add('purple'); // Turn purple
                         } else {
-                            entry.target.classList.remove('purple');
+                            entry.target.classList.remove('purple'); // Revert
                         }
                     });
                 });
