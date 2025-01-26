@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Call Fronk Live</title>
+    <title>Call Fronk</title>
     <style>
         /* General Reset */
         * {
@@ -11,177 +11,182 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e1e1e, #000);
-            color: #f4f4f4;
-            overflow: hidden;
+            background: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/blue%20alone.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1000px;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
+
+        /* Background for Clouds */
         .background {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
             overflow: hidden;
-            background: radial-gradient(circle, rgba(255, 0, 150, 0.2), rgba(0, 0, 255, 0));
-            animation: pulse 6s infinite alternate ease-in-out;
         }
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                filter: blur(2px);
-            }
-            100% {
-                transform: scale(1.2);
-                filter: blur(6px);
-            }
-        }
-        .stars {
+
+        .cloud {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent),
-                        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent 1px, transparent 10px);
-            z-index: -2;
-            animation: rotate 60s infinite linear;
+            background-image: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/cloud%20asset.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float infinite linear;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        .container {
-            background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.9));
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            width: 90%;
-            max-width: 480px;
-            padding: 30px;
-            text-align: center;
-            transform: rotateY(0deg);
-            animation: float 6s ease-in-out infinite alternate;
-        }
+
+        /* Cloud Movement with Wavering */
         @keyframes float {
             0% {
-                transform: translateY(-10px) rotateY(2deg);
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(10vw, -5vh) rotate(5deg);
+            }
+            50% {
+                transform: translate(20vw, 0vh) rotate(-5deg);
+            }
+            75% {
+                transform: translate(30vw, 5vh) rotate(3deg);
             }
             100% {
-                transform: translateY(10px) rotateY(-2deg);
+                transform: translate(100vw, 10vh) rotate(0deg);
             }
         }
+
+        /* Call Link Container */
+        .link-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            margin: 50px auto;
+            position: relative;
+            z-index: 10;
+        }
+
         .profile img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            margin-bottom: 15px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(255, 0, 150, 0.5);
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
+
         .profile h1 {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .profile p {
-            font-size: 1.2rem;
-            color: #ddd;
+            color: #333;
             margin-bottom: 20px;
+            text-align: center;
         }
-        .phone-number {
-            font-size: 1.8rem;
+
+        /* Call Button Styled as Cloud */
+        .call-button {
+            display: block;
+            position: relative;
+            background-image: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/cloud%20asset.png');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            text-align: center;
+            font-size: 1.4rem;
             font-weight: bold;
-            color: #4CAF50;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50;
+            text-decoration: none;
+            padding: 20px 25px;
+            margin: 15px auto;
+            width: 220px;
+            height: 120px;
+            line-height: 80px;
+            border-radius: 50%;
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
-        .copy-button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #fff;
-            background: linear-gradient(135deg, #ff0080, #ff8000);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 40px rgba(255, 0, 150, 0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .call-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(255, 255, 255, 0.8);
         }
-        .copy-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 60px rgba(255, 0, 150, 0.8);
-        }
-        .copy-button:active {
-            transform: translateY(2px);
-            box-shadow: 0 5px 20px rgba(255, 0, 150, 0.4);
-        }
-        .message {
-            font-size: 1rem;
-            color: #4CAF50;
-            margin-top: 15px;
-            display: none;
-        }
-        .disclaimer {
-            font-size: 1rem;
-            color: #bbb;
-            margin-top: 20px;
-            text-align: left;
-            line-height: 1.8;
-        }
+
+        /* Footer */
         .footer {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 0.9rem;
-            color: #aaa;
+            color: #777;
+            text-align: center;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const background = document.querySelector('.background');
+            const cloudCount = 30; // Increased cloud count for more variety
+
+            // Function to spawn clouds dynamically
+            function spawnClouds() {
+                for (let i = 0; i < cloudCount; i++) {
+                    createCloud(true); // Pass true for initial clouds
+                }
+            }
+
+            // Function to create a single cloud
+            function createCloud(isInitial = false) {
+                const cloud = document.createElement('div');
+                cloud.classList.add('cloud');
+
+                // Randomize size, position, and speed
+                const size = Math.random() * 150 + 50; // 50px to 200px
+                const topPosition = Math.random() * 100; // Random vertical start
+                const duration = Math.random() * 50 + 50; // Between 50s and 100s
+
+                cloud.style.width = `${size}px`;
+                cloud.style.height = `${size * 0.6}px`; // Adjust for proportions
+                cloud.style.top = `${topPosition}vh`;
+
+                // Start off-screen for new clouds, on-screen for initial clouds
+                cloud.style.left = isInitial
+                    ? `${Math.random() * 100}vw`
+                    : `-${size}px`;
+                cloud.style.animationDuration = `${duration}s`;
+
+                background.appendChild(cloud);
+
+                // Remove cloud after animation ends
+                setTimeout(() => cloud.remove(), duration * 1000);
+            }
+
+            spawnClouds(); // Populate initial clouds
+            setInterval(() => createCloud(false), 3000); // Add new clouds every 3 seconds
+        });
+    </script>
 </head>
 <body>
+    <!-- Animated Background -->
     <div class="background"></div>
-    <div class="stars"></div>
-    <div class="container">
+
+    <!-- Main Content -->
+    <div class="link-container">
         <div class="profile">
-            <img src="https://raw.githubusercontent.com/thefronky/pfp/63771d1697ebc02222af1093a444ebe3a4f21ac0/Fronk%20Logo%20new.png" alt="The Fronk">
-            <h1>Call Fronk Live</h1>
-            <p>Talk to Fronk and join the live show experience today.</p>
+            <img src="https://raw.githubusercontent.com/thefronky/pfp/63771d1697ebc02222af1093a444ebe3a4f21ac0/Fronk%20Logo%20new.png" alt="The Fronk Logo">
+            <h1>Call Fronk</h1>
         </div>
-        <div class="phone-number" id="phone-number">+1 (619) 483-1992</div>
-        <button class="copy-button" onclick="copyNumber()">Copy Number</button>
-        <p class="message" id="message">Phone number copied to clipboard!</p>
-        <div class="disclaimer">
-            <p><strong>Disclaimer:</strong></p>
-            <ul>
-                <li>Your call may be recorded for live streaming and content creation.</li>
-                <li>By calling, you grant irrevocable, worldwide rights to use the content without compensation.</li>
-                <li>If you do not agree to these terms, do not call this number.</li>
-            </ul>
-        </div>
+        <a href="tel:+16194831992" class="call-button">📞 CALL FRONK</a>
         <div class="footer">
             <p>Fronk Show Productions</p>
         </div>
     </div>
-    <script>
-        function copyNumber() {
-            const phoneNumber = document.getElementById("phone-number").innerText;
-            navigator.clipboard.writeText(phoneNumber).then(() => {
-                const message = document.getElementById("message");
-                message.style.display = "block";
-                setTimeout(() => {
-                    message.style.display = "none";
-                }, 3000);
-            });
-        }
-    </script>
 </body>
 </html>
