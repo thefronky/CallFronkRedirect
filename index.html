@@ -40,7 +40,6 @@
             border-radius: 50%;
             opacity: 0.8;
             animation: float infinite linear;
-            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
         /* Cloud Movement with Wavering */
@@ -122,14 +121,22 @@
             box-shadow: 0 15px 50px rgba(255, 255, 255, 0.8);
         }
 
+        /* Disclaimer Styling */
         .disclaimer {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 0.9rem;
             color: #fff;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2); /* Cloud-like translucent background */
+            backdrop-filter: blur(5px);
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
             text-align: center;
+            line-height: 1.5;
+        }
+
+        .disclaimer strong {
+            color: #ffd700;
         }
 
         /* Footer */
@@ -195,12 +202,11 @@
         </div>
         <a href="tel:+16194831992" class="call-button">📞 CALL FRONK</a>
         <div class="disclaimer">
-            <p><strong>Disclaimer:</strong> By calling this number, you agree to the following terms:</p>
+            <p><strong>Disclaimer:</strong> By calling this number, you agree that:</p>
             <ul>
-                <li>Your call may be recorded for live streaming, content creation, and distribution.</li>
-                <li>By participating, you grant irrevocable, perpetual, worldwide rights to use, reproduce, distribute, modify, and display the recorded content.</li>
-                <li>You will not receive compensation or royalties for your participation or the use of the content.</li>
-                <li>If you do not agree to these terms, do not call this number.</li>
+                <li>Calls may be recorded for live streaming and content creation.</li>
+                <li>You grant rights to use and distribute the recorded content without compensation.</li>
+                <li>If you do not agree, please do not call.</li>
             </ul>
         </div>
         <div class="footer">
