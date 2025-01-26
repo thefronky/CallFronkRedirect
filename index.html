@@ -40,7 +40,11 @@
             border-radius: 50%;
             opacity: 0.8;
             animation: float infinite linear;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .cloud.purple {
+            filter: hue-rotate(240deg); /* Make the cloud purple */
         }
 
         /* Cloud Movement with Wavering */
@@ -68,14 +72,14 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            background: rgba(30, 30, 30, 0.7); /* Darkened semi-transparent background */
+            background: rgba(255, 255, 255, 0.5); /* Light translucent background */
             border-radius: 20px;
             width: 90%;
             max-width: 480px;
             margin: 50px auto;
             position: relative;
             z-index: 10;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* Subtle shadow for emphasis */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle shadow */
         }
 
         .profile img {
@@ -91,7 +95,7 @@
         .profile h1 {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #fff; /* White text for contrast */
+            color: #333; /* Darker text for better contrast */
             margin-bottom: 20px;
             text-align: center;
         }
@@ -127,12 +131,12 @@
         .disclaimer {
             margin-top: 20px;
             font-size: 0.9rem;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.2); /* Cloud-like translucent background */
+            color: #333;
+            background: rgba(255, 255, 255, 0.8); /* Lighter background for readability */
             backdrop-filter: blur(5px);
             padding: 15px 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             text-align: left; /* Align text to the left */
             line-height: 1.6;
         }
@@ -150,13 +154,14 @@
         .footer {
             margin-top: 20px;
             font-size: 0.9rem;
-            color: #aaa; /* Slightly dimmed footer text */
+            color: #555; /* Dimmed footer text */
             text-align: center;
         }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const background = document.querySelector('.background');
+            const linkContainer = document.querySelector('.link-container');
             const cloudCount = 30; // Increased cloud count for more variety
 
             // Function to spawn clouds dynamically
@@ -187,6 +192,19 @@
                 cloud.style.animationDuration = `${duration}s`;
 
                 background.appendChild(cloud);
+
+                // Detect when clouds overlap the container
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('purple');
+                        } else {
+                            entry.target.classList.remove('purple');
+                        }
+                    });
+                });
+
+                observer.observe(cloud);
 
                 // Remove cloud after animation ends
                 setTimeout(() => cloud.remove(), duration * 1000);
