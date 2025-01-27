@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Call Fronk</title>
     <style>
         /* General Reset */
@@ -12,13 +12,17 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/blue%20alone.png') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
-            height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         /* Background for Clouds */
@@ -40,11 +44,6 @@
             border-radius: 50%;
             opacity: 0.8;
             animation: float infinite linear;
-            transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .cloud.purple {
-            filter: hue-rotate(240deg); /* Turn the cloud purple */
         }
 
         /* Cloud Movement with Wavering */
@@ -66,7 +65,7 @@
             }
         }
 
-        /* Call Link Container */
+        /* Link Container */
         .link-container {
             display: flex;
             flex-direction: column;
@@ -77,9 +76,8 @@
             width: 90%;
             max-width: 480px;
             margin: 50px auto;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
 
         .profile img {
@@ -88,20 +86,18 @@
             border-radius: 50%;
             margin-bottom: 20px;
             display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .profile h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
-            color: #333; /* Darker text for better contrast */
+            color: #333;
             margin-bottom: 20px;
             text-align: center;
         }
 
-        /* Call Button Styled as Cloud */
-        .call-button {
+        /* Copy Button Styled as Cloud */
+        .copy-button {
             display: block;
             position: relative;
             background-image: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/cloud%20asset.png');
@@ -112,7 +108,7 @@
             font-size: 1.4rem;
             font-weight: bold;
             text-decoration: none;
-            padding: 20px 25px;
+            padding: 20px;
             margin: 15px auto;
             width: 220px;
             height: 120px;
@@ -120,116 +116,62 @@
             border-radius: 50%;
             box-shadow: 0 10px 40px rgba(255, 255, 255, 0.5);
             transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
         }
 
-        .call-button:hover {
+        .copy-button:hover {
             transform: scale(1.1);
             box-shadow: 0 15px 50px rgba(255, 255, 255, 0.8);
         }
 
-        /* Disclaimer Styling */
-        .disclaimer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8); /* Lighter background for readability */
-            backdrop-filter: blur(5px);
-            padding: 15px 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            text-align: left; /* Align text to the left */
-            line-height: 1.6;
+        /* Confirmation Text */
+        .confirmation {
+            font-size: 1rem;
+            color: #28a745; /* Green for success message */
+            opacity: 0;
+            margin-top: 10px;
+            transition: opacity 0.5s ease;
         }
 
-        .disclaimer ul {
-            list-style-type: disc;
-            padding-left: 20px;
+        .confirmation.visible {
+            opacity: 1;
         }
 
         /* Footer */
         .footer {
             margin-top: 20px;
             font-size: 0.9rem;
-            color: #555; /* Dimmed footer text */
+            color: #555;
             text-align: center;
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const background = document.querySelector('.background');
-            const linkContainer = document.querySelector('.link-container');
-            const cloudCount = 30; // Increased cloud count for more variety
+        function copyPhoneNumber() {
+            const phoneNumber = "+16194831992"; // Phone number to copy
+            navigator.clipboard.writeText(phoneNumber).then(() => {
+                const confirmationMessage = document.querySelector('.confirmation');
+                confirmationMessage.classList.add('visible');
 
-            // Function to spawn clouds dynamically
-            function spawnClouds() {
-                for (let i = 0; i < cloudCount; i++) {
-                    createCloud(true); // Pass true for initial clouds
-                }
-            }
-
-            // Function to create a single cloud
-            function createCloud(isInitial = false) {
-                const cloud = document.createElement('div');
-                cloud.classList.add('cloud');
-
-                // Randomize size, position, and speed
-                const size = Math.random() * 150 + 50; // 50px to 200px
-                const topPosition = Math.random() * 100; // Random vertical start
-                const duration = Math.random() * 50 + 50; // Between 50s and 100s
-
-                cloud.style.width = `${size}px`;
-                cloud.style.height = `${size * 0.6}px`; // Adjust for proportions
-                cloud.style.top = `${topPosition}vh`;
-
-                // Start off-screen for new clouds, on-screen for initial clouds
-                cloud.style.left = isInitial
-                    ? `${Math.random() * 100}vw`
-                    : `-${size}px`;
-                cloud.style.animationDuration = `${duration}s`;
-
-                background.appendChild(cloud);
-
-                // Detect when clouds overlap the container
-                const observer = new IntersectionObserver(entries => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('purple'); // Turn purple
-                        } else {
-                            entry.target.classList.remove('purple'); // Revert
-                        }
-                    });
-                });
-
-                observer.observe(cloud);
-
-                // Remove cloud after animation ends
-                setTimeout(() => cloud.remove(), duration * 1000);
-            }
-
-            spawnClouds(); // Populate initial clouds
-            setInterval(() => createCloud(false), 3000); // Add new clouds every 3 seconds
-        });
+                // Hide confirmation message after 3 seconds
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('visible');
+                }, 3000);
+            });
+        }
     </script>
 </head>
 <body>
-    <!-- Animated Background -->
     <div class="background"></div>
-
-    <!-- Main Content -->
     <div class="link-container">
         <div class="profile">
             <img src="https://raw.githubusercontent.com/thefronky/pfp/63771d1697ebc02222af1093a444ebe3a4f21ac0/Fronk%20Logo%20new.png" alt="The Fronk Logo">
             <h1>Call Fronk</h1>
         </div>
-        <a href="tel:+16194831992" class="call-button">📞 CALL FRONK</a>
-        <div class="disclaimer">
-            <p><strong>Disclaimer:</strong> By calling this number, you agree that:</p>
-            <ul>
-                <li>Calls may be recorded for live streaming and content creation.</li>
-                <li>You grant rights to use and distribute the recorded content without compensation.</li>
-                <li>If you do not agree, please do not call.</li>
-            </ul>
+        <div>
+            <p style="font-size: 1.4rem; color: #333; text-align: center;">📞 +1 (619) 483-1992</p>
         </div>
+        <div class="copy-button" onclick="copyPhoneNumber()">📋 COPY NUMBER</div>
+        <div class="confirmation">Number copied to clipboard!</div>
         <div class="footer">
             <p>Fronk Show Productions</p>
         </div>
