@@ -167,6 +167,7 @@
             const phoneNumber = "+16194831992"; // Phone number to copy
             navigator.clipboard.writeText(phoneNumber).then(() => {
                 const confirmationMessage = document.querySelector('.confirmation');
+                confirmationMessage.textContent = "Copied to clipboard!";
                 confirmationMessage.classList.add('visible');
 
                 // Hide confirmation message after 3 seconds
@@ -187,8 +188,8 @@
         <div>
             <p style="font-size: 1.4rem; color: #333; text-align: center;">📞 +1 (619) 483-1992</p>
         </div>
-        <div class="copy-button" onclick="copyPhoneNumber()">📋 COPY NUMBER</div>
-        <div class="confirmation">Number copied to clipboard!</div>
+        <div class="copy-button" onclick="copyPhoneNumber()">📋 COPY</div>
+        <div class="confirmation"></div>
         <div class="disclaimer">
             <p><strong>Disclaimer:</strong> By calling this number, you agree to the following:</p>
             <ul>
