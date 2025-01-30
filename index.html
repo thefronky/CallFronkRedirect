@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Call Fronk</title>
     <style>
         /* General Reset */
@@ -10,22 +10,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
             background: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/blue%20alone.png') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
-        /* Background for Clouds */
+        /* Moving Cloud Background */
         .background {
             position: fixed;
             top: 0;
@@ -39,169 +36,145 @@
         .cloud {
             position: absolute;
             background-image: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/cloud%20asset.png');
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
             opacity: 0.8;
-            animation: float infinite linear;
+            filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
+            animation: float linear infinite;
         }
 
-        /* Cloud Movement with Wavering */
         @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(10vw, -5vh) rotate(5deg);
-            }
-            50% {
-                transform: translate(20vw, 0vh) rotate(-5deg);
-            }
-            75% {
-                transform: translate(30vw, 5vh) rotate(3deg);
-            }
-            100% {
-                transform: translate(100vw, 10vh) rotate(0deg);
-            }
+            0% { transform: translateX(-200px) translateY(20vh) scale(1); opacity: 1; }
+            50% { transform: translateX(50vw) translateY(25vh) scale(1.1); }
+            100% { transform: translateX(110vw) translateY(30vh) scale(1); opacity: 0.7; }
         }
 
-        /* Link Container */
-        .link-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.6); /* Light translucent background */
-            border-radius: 20px;
+        .container {
             width: 90%;
-            max-width: 480px;
-            margin: 50px auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            text-align: center; /* Center all text and child elements */
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
         }
 
-        .profile img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 20px; /* Center the image horizontally and add spacing below */
-            display: block;
-        }
-
-        .profile h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #333;
+        .header img {
+            width: 300px;
             margin-bottom: 20px;
-            text-align: center;
         }
 
-        /* Copy Button Styled as Cloud */
+        .section {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
         .copy-button {
-            display: block;
-            position: relative;
-            background-image: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/cloud%20asset.png');
-            background-size: cover;
-            background-position: center;
-            color: #333;
-            text-align: center;
-            font-size: 1.4rem;
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2rem;
             font-weight: bold;
             text-decoration: none;
-            padding: 20px;
-            margin: 15px auto;
-            width: 220px;
-            height: 120px;
-            line-height: 80px;
-            border-radius: 50%;
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.5);
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            color: #fff;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
         }
 
         .copy-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
 
-        /* Confirmation Text */
-        .confirmation {
-            font-size: 1rem;
-            color: #28a745; /* Green for success message */
-            opacity: 0;
-            margin-top: 10px;
-            transition: opacity 0.5s ease;
-        }
-
-        .confirmation.visible {
-            opacity: 1;
-        }
-
-        /* Disclaimer Section */
-        .disclaimer {
-            font-size: 0.9rem;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-top: 20px;
-            text-align: left;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .disclaimer ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-
-        /* Footer */
         .footer {
-            margin-top: 20px;
+            margin-top: 40px;
             font-size: 0.9rem;
-            color: #555;
-            text-align: center;
+            opacity: 0.7;
         }
     </style>
     <script>
-        function copyPhoneNumber() {
-            const phoneNumber = "+16194831992"; // Phone number to copy
-            navigator.clipboard.writeText(phoneNumber).then(() => {
-                const confirmationMessage = document.querySelector('.confirmation');
-                confirmationMessage.textContent = "Copied to clipboard!";
-                confirmationMessage.classList.add('visible');
-
-                // Hide confirmation message after 3 seconds
+        document.addEventListener("DOMContentLoaded", function() {
+            const cloudContainer = document.querySelector(".background");
+            function createCloud() {
+                const cloud = document.createElement("div");
+                cloud.classList.add("cloud");
+                cloud.style.top = (Math.random() * 40 + 10) + "vh";
+                cloud.style.left = Math.random() * 100 + "vw";
+                cloud.style.animationDuration = Math.random() * 40 + 20 + "s";
+                cloud.style.width = Math.random() * 200 + 100 + "px";
+                cloud.style.height = Math.random() * 120 + 80 + "px";
+                cloudContainer.appendChild(cloud);
                 setTimeout(() => {
-                    confirmationMessage.classList.remove('visible');
-                }, 3000);
+                    cloud.remove();
+                }, 50000);
+            }
+            setInterval(createCloud, 700);
+            for (let i = 0; i < 20; i++) createCloud();
+        });
+        function copyPhoneNumber() {
+            const phoneNumber = "+16194831992";
+            navigator.clipboard.writeText(phoneNumber).then(() => {
+                const confirmation = document.createElement('div');
+                confirmation.textContent = 'Number copied!';
+                confirmation.style.position = 'fixed';
+                confirmation.style.bottom = '20px';
+                confirmation.style.left = '50%';
+                confirmation.style.transform = 'translateX(-50%)';
+                confirmation.style.background = 'rgba(0, 0, 0, 0.7)';
+                confirmation.style.color = '#fff';
+                confirmation.style.padding = '10px 20px';
+                confirmation.style.borderRadius = '10px';
+                confirmation.style.fontSize = '1.2rem';
+                confirmation.style.zIndex = '1000';
+                document.body.appendChild(confirmation);
+                setTimeout(() => { confirmation.remove(); }, 3000);
             });
         }
     </script>
 </head>
 <body>
     <div class="background"></div>
-    <div class="link-container">
-        <div class="profile">
+    <div class="container">
+        <div class="header">
             <img src="https://raw.githubusercontent.com/thefronky/pfp/63771d1697ebc02222af1093a444ebe3a4f21ac0/Fronk%20Logo%20new.png" alt="The Fronk Logo">
-            <h1>Call Fronk</h1>
         </div>
-        <div>
-            <p style="font-size: 1.4rem; color: #333; text-align: center;">📞 +1 (619) 483-1992</p>
+        
+        <div class="section">
+            <h2>📞 Call Fronk</h2>
+            <div class="copy-button" onclick="copyPhoneNumber()">📋 COPY NUMBER</div>
         </div>
-        <div class="copy-button" onclick="copyPhoneNumber()">📋 COPY</div>
-        <div class="confirmation"></div>
-        <div class="disclaimer">
-            <p><strong>Disclaimer:</strong> By calling this number, you agree to the following:</p>
-            <ul>
+        <div class="section">
+            <h2>⚖️ Legal Disclaimer</h2>
+            <p>By calling this number, you agree to the following terms:</p>
+            <ul style="text-align: left; margin: 0 auto; max-width: 600px;">
+                <li>You must be at least <strong>18 years old</strong> to participate.</li>
                 <li>Your call may be recorded for live streaming and content creation purposes.</li>
-                <li>You grant irrevocable rights to use, reproduce, and distribute the recorded content worldwide without compensation.</li>
-                <li>You must be 18 years or older to participate.</li>
+                <li>By participating, you grant irrevocable rights to use, reproduce, and distribute the recorded content worldwide without compensation.</li>
                 <li>If you do not agree to these terms, please do not call this number.</li>
             </ul>
         </div>
         <div class="footer">
-            <p>Fronk Show Productions</p>
+            <p>Fronk Show Productions 2025</p>
         </div>
     </div>
 </body>
