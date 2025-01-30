@@ -16,13 +16,13 @@
         body {
             background: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/blue%20alone.png') no-repeat center center fixed;
             background-size: cover;
-            color: #fff;
+            color: #000;
             text-align: center;
             overflow-x: hidden;
             overflow-y: auto;
         }
 
-        /* Moving Cloud Background */
+        /* Moving Cloud Background with Parallax */
         .background {
             position: fixed;
             top: 0;
@@ -31,6 +31,7 @@
             height: 100vh;
             z-index: -1;
             overflow: hidden;
+            transform: scale(1.2);
         }
 
         .cloud {
@@ -38,54 +39,34 @@
             background-image: url('https://raw.githubusercontent.com/thefronky/cloud/refs/heads/main/cloud%20asset.png');
             background-size: contain;
             background-repeat: no-repeat;
-            opacity: 0.8;
-            filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
+            opacity: 0.6;
+            filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3));
             animation: float linear infinite;
         }
 
         @keyframes float {
             0% { transform: translateX(-200px) translateY(20vh) scale(1); opacity: 1; }
             50% { transform: translateX(50vw) translateY(25vh) scale(1.1); }
-            100% { transform: translateX(110vw) translateY(30vh) scale(1); opacity: 0.7; }
+            100% { transform: translateX(110vw) translateY(30vh) scale(1); opacity: 0.5; }
         }
 
         .container {
             width: 90%;
-            max-width: 1000px;
+            max-width: 600px;
             margin: 0 auto;
             padding: 50px 20px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(25px);
             border-radius: 20px;
             box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
         }
 
         .header img {
-            width: 300px;
-            margin-bottom: 20px;
-        }
-
-        .section {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 20px 0;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .section:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
-        }
-
-        .section h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .section p {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 15px;
+            width: 250px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            margin-bottom: 40px;
         }
 
         .copy-button {
@@ -103,51 +84,42 @@
 
         .copy-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
         }
 
-        .footer {
-            margin-top: 40px;
+        .confirmation {
+            font-size: 1rem;
+            color: #28a745;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .confirmation.visible {
+            opacity: 1;
+        }
+
+        .disclaimer {
+            margin-top: 20px;
+            padding: 15px;
             font-size: 0.9rem;
-            opacity: 0.7;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const cloudContainer = document.querySelector(".background");
-            function createCloud() {
-                const cloud = document.createElement("div");
-                cloud.classList.add("cloud");
-                cloud.style.top = (Math.random() * 40 + 10) + "vh";
-                cloud.style.left = Math.random() * 100 + "vw";
-                cloud.style.animationDuration = Math.random() * 40 + 20 + "s";
-                cloud.style.width = Math.random() * 200 + 100 + "px";
-                cloud.style.height = Math.random() * 120 + 80 + "px";
-                cloudContainer.appendChild(cloud);
-                setTimeout(() => {
-                    cloud.remove();
-                }, 50000);
-            }
-            setInterval(createCloud, 700);
-            for (let i = 0; i < 20; i++) createCloud();
-        });
         function copyPhoneNumber() {
             const phoneNumber = "+16194831992";
             navigator.clipboard.writeText(phoneNumber).then(() => {
-                const confirmation = document.createElement('div');
-                confirmation.textContent = 'Number copied!';
-                confirmation.style.position = 'fixed';
-                confirmation.style.bottom = '20px';
-                confirmation.style.left = '50%';
-                confirmation.style.transform = 'translateX(-50%)';
-                confirmation.style.background = 'rgba(0, 0, 0, 0.7)';
-                confirmation.style.color = '#fff';
-                confirmation.style.padding = '10px 20px';
-                confirmation.style.borderRadius = '10px';
-                confirmation.style.fontSize = '1.2rem';
-                confirmation.style.zIndex = '1000';
-                document.body.appendChild(confirmation);
-                setTimeout(() => { confirmation.remove(); }, 3000);
+                const confirmationMessage = document.querySelector('.confirmation');
+                confirmationMessage.textContent = "Number copied!";
+                confirmationMessage.classList.add('visible');
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('visible');
+                }, 2000);
             });
         }
     </script>
@@ -158,23 +130,18 @@
         <div class="header">
             <img src="https://raw.githubusercontent.com/thefronky/pfp/63771d1697ebc02222af1093a444ebe3a4f21ac0/Fronk%20Logo%20new.png" alt="The Fronk Logo">
         </div>
-        
-        <div class="section">
-            <h2>📞 Call Fronk</h2>
-            <div class="copy-button" onclick="copyPhoneNumber()">📋 COPY NUMBER</div>
-        </div>
-        <div class="section">
-            <h2>⚖️ Legal Disclaimer</h2>
-            <p>By calling this number, you agree to the following terms:</p>
-            <ul style="text-align: left; margin: 0 auto; max-width: 600px;">
-                <li>You must be at least <strong>18 years old</strong> to participate.</li>
+        <h2>📞 Call Fronk</h2>
+        <p style="font-size: 1.4rem; font-weight: bold;">+1 (619) 483-1992</p>
+        <div class="copy-button" onclick="copyPhoneNumber()">📋 Copy Number</div>
+        <div class="confirmation"></div>
+        <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> By calling this number, you agree to the following:</p>
+            <ul>
                 <li>Your call may be recorded for live streaming and content creation purposes.</li>
-                <li>By participating, you grant irrevocable rights to use, reproduce, and distribute the recorded content worldwide without compensation.</li>
+                <li>You grant irrevocable rights to use, reproduce, and distribute the recorded content worldwide without compensation.</li>
+                <li>You must be 18 years or older to participate.</li>
                 <li>If you do not agree to these terms, please do not call this number.</li>
             </ul>
-        </div>
-        <div class="footer">
-            <p>Fronk Show Productions 2025</p>
         </div>
     </div>
 </body>
